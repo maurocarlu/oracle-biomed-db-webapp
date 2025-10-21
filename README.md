@@ -135,28 +135,6 @@ The Flask app exposes standard CRUD-like pages for the main entities. Key routes
 - Association pages: `/assign`, `/writes`, `/affected`, `/cause`, `/analyze` (+ add pages)
 - Operations: `/operations/op2`, `/operations/op3`, `/operations/op4`, `/operations/op5` (these call the database functions)
 
-Most add pages use HTML forms that submit to the same route (POST). The app uses `oracledb` to execute SQL and stored procedures; read the code in `webapp/app.py` for details on how REFs and object inserts are implemented.
-
-## Notes, limitations and assumptions
-
-- Security: This project is demonstrative. Do NOT use `SYSTEM` or default passwords in production. The `app.secret_key` is hardcoded and must be changed. No authentication/authorization is implemented.
-- Oracle driver: The project uses python-oracledb in thin mode (no Instant Client). For advanced features or thick mode, install Oracle Instant Client and configure accordingly.
-- Scalability: The `insert_auto.sql` can generate large datasets (tens of thousands of rows). Be mindful of storage and performance during population.
-- Data integrity: Business rules are enforced via triggers; ensure you test the constraint scripts in a safe environment.
-- Environment variables and config: The connection DSN is built in `webapp/config.py` using env vars.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Open a pull request with a clear description of changes
-
-If you add features that change DB schemas or stored procedure signatures, update `README.md` and `sql/` scripts accordingly.
-
-## License
-
-Choose an appropriate open source license for your project and add a `LICENSE` file. No license file is included in this repository currently.
-
 ---
 
 If you want, I can:
