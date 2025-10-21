@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  webapp:
+    build: .
+    container_name: oracle_webapp
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - DB_HOST=host.docker.internal
+      - DB_PORT=1521
+      - DB_SERVICE=XEPDB1
+      - DB_USER=SYSTEM
+      - DB_PASSWORD=Password123
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped

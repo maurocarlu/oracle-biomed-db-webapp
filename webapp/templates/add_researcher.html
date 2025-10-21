@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Add Researcher{% endblock %}
+
+{% block content %}
+<h2>Add New Researcher</h2>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="cf">Codice Fiscale (16 characters):</label>
+        <input type="text" id="cf" name="cf" maxlength="16" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="birth">Birth Date:</label>
+        <input type="date" id="birth" name="birth" required>
+    </div>
+    
+    <button type="submit" class="btn">Add Researcher</button>
+    <a href="{{ url_for('researchers') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

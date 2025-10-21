@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Add Future Work{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Add New Future Work</h1>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="exp_id">Experiment (ID - Date):</label>
+            <select id="exp_id" name="exp_id" required>
+                <option value="">-- Select Experiment --</option>
+                {% for exp in experiments %}
+                <option value="{{ exp[0] }}">{{ exp[0] }} - {{ exp[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="pub_doi">Publication (DOI - Title):</label>
+            <select id="pub_doi" name="pub_doi" required>
+                <option value="">-- Select Publication --</option>
+                {% for pub in publications %}
+                <option value="{{ pub[0] }}">{{ pub[0] }} - {{ pub[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit">Add Future Work</button>
+            <a href="{{ url_for('future_works') }}" class="button">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

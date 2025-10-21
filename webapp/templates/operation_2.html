@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Operation 2{% endblock %}
+
+{% block content %}
+<h2>Operation 2: List Organs/Tissues Below Density Threshold</h2>
+<p><small>Stored Procedure: proc_list_bio_below_density</small></p>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="threshold">Density Threshold:</label>
+        <input type="number" id="threshold" name="threshold" step="0.01" 
+               value="{{ threshold if threshold else '' }}" required>
+    </div>
+    
+    <button type="submit" class="btn">Execute Query</button>
+    <a href="{{ url_for('operations') }}" class="btn btn-secondary">Back to Operations</a>
+</form>
+
+{% if results is not none %}
+    <h3 style="margin-top: 30px;">Results</h3>
+    {% if results %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Density</th>
+                <th>Donor CF</th>
+                <th>Is Required</th>
+                <th>Condition</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in results %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="no-data">No results found for the specified threshold.</div>
+    {% endif %}
+{% endif %}
+{% endblock %}

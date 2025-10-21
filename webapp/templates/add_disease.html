@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Add Disease{% endblock %}
+
+{% block content %}
+<h2>Add New Disease</h2>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Disease Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="discovery_date">Discovery Date:</label>
+        <input type="date" id="discovery_date" name="discovery_date" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="5"></textarea>
+    </div>
+    
+    <button type="submit" class="btn">Add Disease</button>
+    <a href="{{ url_for('diseases') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

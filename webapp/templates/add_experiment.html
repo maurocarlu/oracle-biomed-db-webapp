@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Add Experiment{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Add New Experiment</h1>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="exper_date">Experiment Date:</label>
+            <input type="date" id="exper_date" name="exper_date" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="is_positive">Is Positive:</label>
+            <select id="is_positive" name="is_positive" required>
+                <option value="">-- Select --</option>
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="effect_description">Effect Description:</label>
+            <textarea id="effect_description" name="effect_description" rows="4" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="disease_id">Disease:</label>
+            <select id="disease_id" name="disease_id" required>
+                <option value="">-- Select Disease --</option>
+                {% for disease in diseases %}
+                <option value="{{ disease[0] }}">{{ disease[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="treatment_id">Treatment:</label>
+            <select id="treatment_id" name="treatment_id" required>
+                <option value="">-- Select Treatment --</option>
+                {% for treatment in treatments %}
+                <option value="{{ treatment[0] }}">{{ treatment[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit">Add Experiment</button>
+            <a href="{{ url_for('experiments') }}" class="button">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

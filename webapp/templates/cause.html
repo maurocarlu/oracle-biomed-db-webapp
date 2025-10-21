@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Cause (Drug-Allergy){% endblock %}
+
+{% block content %}
+<h2>Cause (Drug-Allergy Associations)</h2>
+
+<a href="{{ url_for('add_cause') }}" class="btn">Add New Link</a>
+
+{% if causes %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Drug ID</th>
+            <th>Drug Name</th>
+            <th>Allergy ID</th>
+            <th>Allergy Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cause in causes %}
+        <tr>
+            <td>{{ cause[0] }}</td>
+            <td>{{ cause[1] }}</td>
+            <td>{{ cause[2] }}</td>
+            <td>{{ cause[3] }}</td>
+            <td>{{ cause[4] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="no-data">No cause associations found.</div>
+{% endif %}
+{% endblock %}

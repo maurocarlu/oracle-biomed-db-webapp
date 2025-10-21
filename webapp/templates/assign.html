@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Assign (Treatment-Drug){% endblock %}
+
+{% block content %}
+<h2>Assign (Treatment-Drug Assignments)</h2>
+<a href="{{ url_for('add_assign') }}" class="btn">Add New Assignment</a>
+
+{% if assigns %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Treatment ID</th>
+            <th>Treatment Name</th>
+            <th>Drug ID</th>
+            <th>Drug Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for assign in assigns %}
+        <tr>
+            <td>{{ assign[0] }}</td>
+            <td>{{ assign[1] }}</td>
+            <td>{{ assign[2] }}</td>
+            <td>{{ assign[3] }}</td>
+            <td>{{ assign[4] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="no-data">No assignments found.</div>
+{% endif %}
+{% endblock %}

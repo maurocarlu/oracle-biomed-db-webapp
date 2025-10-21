@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Researchers{% endblock %}
+
+{% block content %}
+<h2>Researchers</h2>
+<a href="{{ url_for('add_researcher') }}" class="btn">➕ Add New Researcher</a>
+
+{% if researchers %}
+<table>
+    <thead>
+        <tr>
+            <th>CF</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Birth Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for researcher in researchers %}
+        <tr>
+            <td>{{ researcher[0] }}</td>
+            <td>{{ researcher[1] }}</td>
+            <td>{{ researcher[2] }}</td>
+            <td>{{ researcher[3].strftime('%Y-%m-%d') if researcher[3] else 'N/A' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="no-data">No researchers found in the database.</div>
+{% endif %}
+{% endblock %}

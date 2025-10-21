@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Allergies{% endblock %}
+
+{% block content %}
+<h2>Allergies</h2>
+<a href="{{ url_for('add_allergy') }}" class="btn">Add New Allergy</a>
+
+{% if allergies %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for allergy in allergies %}
+        <tr>
+            <td>{{ allergy[0] }}</td>
+            <td>{{ allergy[1] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="no-data">No allergies found.</p>
+{% endif %}
+{% endblock %}

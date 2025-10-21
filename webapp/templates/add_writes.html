@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Add Publication Assignment{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Add Publication Assignment</h1>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="researcher_cf">Researcher:</label>
+            <select id="researcher_cf" name="researcher_cf" required>
+                <option value="">-- Select Researcher --</option>
+                {% for researcher in researchers %}
+                <option value="{{ researcher[0] }}">{{ researcher[0] }} - {{ researcher[1] }} {{ researcher[2] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="publication_doi">Publication (DOI - Title):</label>
+            <select id="publication_doi" name="publication_doi" required>
+                <option value="">-- Select Publication --</option>
+                {% for pub in publications %}
+                <option value="{{ pub[0] }}">{{ pub[0] }} - {{ pub[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit">Add Assignment</button>
+            <a href="{{ url_for('writes') }}" class="button">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

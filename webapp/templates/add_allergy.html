@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Add Allergy{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Add New Allergy</h1>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit">Add Allergy</button>
+            <a href="{{ url_for('allergies') }}" class="button">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

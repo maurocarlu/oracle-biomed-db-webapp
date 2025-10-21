@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Add Drug-Allergy Link{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Add Drug-Allergy Link</h1>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="drug_id">Drug:</label>
+            <select id="drug_id" name="drug_id" required>
+                <option value="">-- Select Drug --</option>
+                {% for drug in drugs %}
+                <option value="{{ drug[0] }}">{{ drug[0] }} - {{ drug[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="allergy_id">Allergy:</label>
+            <select id="allergy_id" name="allergy_id" required>
+                <option value="">-- Select Allergy --</option>
+                {% for allergy in allergies %}
+                <option value="{{ allergy[0] }}">{{ allergy[0] }} - {{ allergy[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit">Add Link</button>
+            <a href="{{ url_for('cause') }}" class="button">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

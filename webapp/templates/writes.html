@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Writes (Researcher-Publication){% endblock %}
+
+{% block content %}
+<h2>Writes (Researcher-Publication Associations)</h2>
+
+<a href="{{ url_for('add_writes') }}" class="btn">Add New Assignment</a>
+
+{% if writes %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Researcher CF</th>
+            <th>Researcher Name</th>
+            <th>Researcher Surname</th>
+            <th>Publication DOI</th>
+            <th>Publication Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for write in writes %}
+        <tr>
+            <td>{{ write[0] }}</td>
+            <td>{{ write[1] }}</td>
+            <td>{{ write[2] }}</td>
+            <td>{{ write[3] }}</td>
+            <td>{{ write[4] }}</td>
+            <td>{{ write[5] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="no-data">No writes associations found.</div>
+{% endif %}
+{% endblock %}

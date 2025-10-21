@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Add Assignment{% endblock %}
+
+{% block content %}
+<h2>Add Treatment-Drug Assignment</h2>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="treatment_id">Treatment:</label>
+        <select id="treatment_id" name="treatment_id" required>
+            <option value="">Select a treatment...</option>
+            {% for treatment in treatments %}
+            <option value="{{ treatment[0] }}">{{ treatment[0] }} - {{ treatment[1] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="drug_id">Drug:</label>
+        <select id="drug_id" name="drug_id" required>
+            <option value="">Select a drug...</option>
+            {% for drug in drugs %}
+            <option value="{{ drug[0] }}">{{ drug[0] }} - {{ drug[1] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <button type="submit" class="btn">Add Assignment</button>
+    <a href="{{ url_for('assign') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

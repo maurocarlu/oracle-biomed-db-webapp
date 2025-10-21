@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Operation 3{% endblock %}
+
+{% block content %}
+<h2>Operation 3: Treatment Info with Drugs and Allergies</h2>
+<p><small>Stored Procedure: proc_get_treatment_info</small></p>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="treatment_id">Select Treatment:</label>
+        <select id="treatment_id" name="treatment_id" required>
+            <option value="">Select a treatment...</option>
+            {% for treatment in treatments %}
+            <option value="{{ treatment[0] }}" {% if treatment[0] == treatment_id %}selected{% endif %}>
+                {{ treatment[0] }} - {{ treatment[1] }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <button type="submit" class="btn">Execute Query</button>
+    <a href="{{ url_for('operations') }}" class="btn btn-secondary">Back to Operations</a>
+</form>
+
+{% if results is not none %}
+    <h3 style="margin-top: 30px;">Results</h3>
+    {% if results %}
+    <table>
+        <thead>
+            <tr>
+                <th>Treatment ID</th>
+                <th>Treatment Name</th>
+                <th>Success %</th>
+                <th>Drug ID</th>
+                <th>Drug Name</th>
+                <th>Allergy ID</th>
+                <th>Allergy Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in results %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}%</td>
+                <td>{{ row[3] if row[3] else 'N/A' }}</td>
+                <td>{{ row[4] if row[4] else 'N/A' }}</td>
+                <td>{{ row[5] if row[5] else 'N/A' }}</td>
+                <td>{{ row[6] if row[6] else 'N/A' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="no-data">No results found for the specified treatment.</div>
+    {% endif %}
+{% endif %}
+{% endblock %}

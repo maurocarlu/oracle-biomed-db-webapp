@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Analyze (BioData-Experiment){% endblock %}
+
+{% block content %}
+<h2>Analyze (BioData-Experiment Associations)</h2>
+
+<a href="{{ url_for('add_analyze') }}" class="btn">Add New Link</a>
+
+{% if analyzes %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Biological Data ID</th>
+            <th>Biological Data Name</th>
+            <th>Experiment ID</th>
+            <th>Experiment Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for analyze in analyzes %}
+        <tr>
+            <td>{{ analyze[0] }}</td>
+            <td>{{ analyze[1] }}</td>
+            <td>{{ analyze[2] }}</td>
+            <td>{{ analyze[3] }}</td>
+            <td>{{ analyze[4] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="no-data">No analyze associations found.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Treatments{% endblock %}
+
+{% block content %}
+<h2>Treatments</h2>
+<a href="{{ url_for('add_treatment') }}" class="btn">➕ Add New Treatment</a>
+
+{% if treatments %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Success Percentage</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for treatment in treatments %}
+        <tr>
+            <td>{{ treatment[0] }}</td>
+            <td>{{ treatment[1] }}</td>
+            <td>{{ treatment[2] }}%</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="no-data">No treatments found in the database.</div>
+{% endif %}
+{% endblock %}

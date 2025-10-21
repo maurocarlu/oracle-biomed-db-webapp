@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Operation 4{% endblock %}
+
+{% block content %}
+<h2>Operation 4: Donors with Disease Affecting Required Organs</h2>
+<p><small>Stored Procedure: proc_list_donors_required_disease_with_fw</small></p>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="disease_id">Select Disease:</label>
+        <select id="disease_id" name="disease_id" required>
+            <option value="">Select a disease...</option>
+            {% for disease in diseases %}
+            <option value="{{ disease[0] }}" {% if disease[0] == disease_id %}selected{% endif %}>
+                {{ disease[0] }} - {{ disease[1] }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <button type="submit" class="btn">Execute Query</button>
+    <a href="{{ url_for('operations') }}" class="btn btn-secondary">Back to Operations</a>
+</form>
+
+{% if results is not none %}
+    <h3 style="margin-top: 30px;">Results</h3>
+    {% if results %}
+    <table>
+        <thead>
+            <tr>
+                <th>Donor CF</th>
+                <th>Name</th>
+                <th>Surname</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in results %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="no-data">No donors found matching the criteria.</div>
+    {% endif %}
+{% endif %}
+{% endblock %}

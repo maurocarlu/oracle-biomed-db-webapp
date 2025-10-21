@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Biological Data{% endblock %}
+
+{% block content %}
+<h2>Biological Data (Organs & Tissues)</h2>
+<a href="{{ url_for('add_biological_data') }}" class="btn">➕ Add New Biological Data</a>
+
+{% if bio_data %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Condition</th>
+            <th>Required</th>
+            <th>Density</th>
+            <th>Position</th>
+            <th>Donor CF</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in bio_data %}
+        <tr>
+            <td>{{ data[0] }}</td>
+            <td>{{ data[1] }}</td>
+            <td>{{ data[2] }}</td>
+            <td>{{ data[3] }}</td>
+            <td>{{ data[4] }}</td>
+            <td>{{ data[5] }}</td>
+            <td>{{ data[6] }}</td>
+            <td>{{ data[7] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="no-data">No biological data found in the database.</div>
+{% endif %}
+{% endblock %}

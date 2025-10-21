@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Future Works{% endblock %}
+
+{% block content %}
+<h2>Future Works</h2>
+<a href="{{ url_for('add_future_work') }}" class="btn">Add New Future Work</a>
+
+{% if future_works %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Experiment ID</th>
+            <th>Publication DOI</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fw in future_works %}
+        <tr>
+            <td>{{ fw[0] }}</td>
+            <td>{{ fw[1] }}</td>
+            <td>{{ fw[2] }}</td>
+            <td>{{ fw[3] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="no-data">No future works found.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Assignations{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Association Tables</h1>
+    <p>Manage all associations between entities in the database.</p>
+    
+    <div class="card-grid">
+        <div class="card">
+            <h3>Assign (Treatment-Drug)</h3>
+            <p>Associations between treatments and drugs</p>
+            <a href="{{ url_for('assign') }}" class="btn">View Assignments</a>
+        </div>
+        
+        <div class="card">
+            <h3>Writes (Researcher-Publication)</h3>
+            <p>Associations between researchers and publications</p>
+            <a href="{{ url_for('writes') }}" class="btn">View Assignments</a>
+        </div>
+        
+        <div class="card">
+            <h3>Affected (BioData-Disease)</h3>
+            <p>Associations between biological data and diseases</p>
+            <a href="{{ url_for('affected') }}" class="btn">View Associations</a>
+        </div>
+        
+        <div class="card">
+            <h3>Cause (Drug-Allergy)</h3>
+            <p>Associations between drugs and allergies</p>
+            <a href="{{ url_for('cause') }}" class="btn">View Associations</a>
+        </div>
+        
+        <div class="card">
+            <h3>Analyze (BioData-Experiment)</h3>
+            <p>Associations between biological data and experiments</p>
+            <a href="{{ url_for('analyze') }}" class="btn">View Associations</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Affected (BiologicalData-Disease){% endblock %}
+
+{% block content %}
+<h2>Affected (BiologicalData-Disease Associations)</h2>
+
+<a href="{{ url_for('add_affected') }}" class="btn">Add New Link</a>
+
+{% if affected %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Biological Data ID</th>
+            <th>Biological Data Name</th>
+            <th>Disease ID</th>
+            <th>Disease Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for aff in affected %}
+        <tr>
+            <td>{{ aff[0] }}</td>
+            <td>{{ aff[1] }}</td>
+            <td>{{ aff[2] }}</td>
+            <td>{{ aff[3] }}</td>
+            <td>{{ aff[4] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="no-data">No affected associations found.</div>
+{% endif %}
+{% endblock %}

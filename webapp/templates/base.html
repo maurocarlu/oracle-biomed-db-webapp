@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Oracle DB Manager{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Oracle Database Manager</h1>
+            <p>Database Systems Project</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">🏠 Home</a></li>
+                <li><a href="{{ url_for('donors') }}">Donors</a></li>
+                <li><a href="{{ url_for('biological_data') }}">Bio Data</a></li>
+                <li><a href="{{ url_for('diseases') }}">Diseases</a></li>
+                <li><a href="{{ url_for('allergies') }}">Allergies</a></li>
+                <li><a href="{{ url_for('treatments') }}">Treatments</a></li>
+                <li><a href="{{ url_for('drugs') }}">Drugs</a></li>
+                <li><a href="{{ url_for('researchers') }}">Researchers</a></li>
+                <li><a href="{{ url_for('publications') }}">Publications</a></li>
+                <li><a href="{{ url_for('experiments') }}">Experiments</a></li>
+                <li><a href="{{ url_for('future_works') }}">Future Works</a></li>
+                <li><a href="{{ url_for('assignations') }}">📋 Assignations</a></li>
+                <li><a href="{{ url_for('operations') }}">⚙️ Operations</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash {{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+            {% block content %}{% endblock %}
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Oracle Database Manager - Database Systems Project</p>
+        </footer>
+    </div>
+</body>
+</html>

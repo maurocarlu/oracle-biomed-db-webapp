@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Diseases{% endblock %}
+
+{% block content %}
+<h2>Diseases</h2>
+<a href="{{ url_for('add_disease') }}" class="btn">➕ Add New Disease</a>
+
+{% if diseases %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Discovery Date</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for disease in diseases %}
+        <tr>
+            <td>{{ disease[0] }}</td>
+            <td>{{ disease[1] }}</td>
+            <td>{{ disease[2].strftime('%Y-%m-%d') if disease[2] else 'N/A' }}</td>
+            <td>{{ disease[3] if disease[3] else 'N/A' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="no-data">No diseases found in the database.</div>
+{% endif %}
+{% endblock %}

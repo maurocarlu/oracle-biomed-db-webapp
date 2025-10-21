@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Oracle DB Manager{% endblock %}
+
+{% block content %}
+<h2>Welcome to Database Manager</h2>
+<p>This web application allows you to manage and interact with the Oracle database.</p>
+
+<!-- Medical & Donor Management -->
+<div class="section">
+    <h3 class="section-title">🏥 Medical & Donor Management</h3>
+    <div class="grid">
+        <div class="card">
+            <h3>Donors</h3>
+            <p>Manage donors in the system</p>
+            <a href="{{ url_for('donors') }}" class="btn">View Donors</a>
+        </div>
+        
+        <div class="card">
+            <h3>Biological Data</h3>
+            <p>Organs and tissues data</p>
+            <a href="{{ url_for('biological_data') }}" class="btn">View Data</a>
+        </div>
+        
+        <div class="card">
+            <h3>Diseases</h3>
+            <p>Disease catalog</p>
+            <a href="{{ url_for('diseases') }}" class="btn">View Diseases</a>
+        </div>
+        
+        <div class="card">
+            <h3>Allergies</h3>
+            <p>Allergy registry</p>
+            <a href="{{ url_for('allergies') }}" class="btn">View Allergies</a>
+        </div>
+    </div>
+</div>
+
+<!-- Treatment & Drugs -->
+<div class="section">
+    <h3 class="section-title">💊 Treatment & Drugs</h3>
+    <div class="grid">
+        <div class="card">
+            <h3>Treatments</h3>
+            <p>Medical treatments</p>
+            <a href="{{ url_for('treatments') }}" class="btn">View Treatments</a>
+        </div>
+        
+        <div class="card">
+            <h3>Drugs</h3>
+            <p>Drug database</p>
+            <a href="{{ url_for('drugs') }}" class="btn">View Drugs</a>
+        </div>
+    </div>
+</div>
+
+<!-- Research & Publications -->
+<div class="section">
+    <h3 class="section-title">🔬 Research & Publications</h3>
+    <div class="grid">
+        <div class="card">
+            <h3>Researchers</h3>
+            <p>Research personnel</p>
+            <a href="{{ url_for('researchers') }}" class="btn">View Researchers</a>
+        </div>
+        
+        <div class="card">
+            <h3>Publications</h3>
+            <p>Scientific publications</p>
+            <a href="{{ url_for('publications') }}" class="btn">View Publications</a>
+        </div>
+        
+        <div class="card">
+            <h3>Experiments</h3>
+            <p>Research experiments</p>
+            <a href="{{ url_for('experiments') }}" class="btn">View Experiments</a>
+        </div>
+        
+        <div class="card">
+            <h3>Future Works</h3>
+            <p>Planned research</p>
+            <a href="{{ url_for('future_works') }}" class="btn">View Future Works</a>
+        </div>
+    </div>
+</div>
+
+<!-- System Functions -->
+<div class="section">
+    <h3 class="section-title">⚙️ System Functions</h3>
+    <div class="grid">
+        <div class="card highlight">
+            <h3>Assignations</h3>
+            <p>All association tables</p>
+            <a href="{{ url_for('assignations') }}" class="btn">View Assignations</a>
+        </div>
+        
+        <div class="card highlight">
+            <h3>Operations</h3>
+            <p>Special database operations</p>
+            <a href="{{ url_for('operations') }}" class="btn">View Operations</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Experiments{% endblock %}
+
+{% block content %}
+<h2>Experiments</h2>
+<a href="{{ url_for('add_experiment') }}" class="btn">Add New Experiment</a>
+
+{% if experiments %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Is Positive</th>
+            <th>Effect Description</th>
+            <th>Disease ID</th>
+            <th>Treatment ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for exp in experiments %}
+        <tr>
+            <td>{{ exp[0] }}</td>
+            <td>{{ exp[1] }}</td>
+            <td>{{ exp[2] }}</td>
+            <td>{{ exp[3] }}</td>
+            <td>{{ exp[4] }}</td>
+            <td>{{ exp[5] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="no-data">No experiments found.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Add Biological Data{% endblock %}
+
+{% block content %}
+<h2>Add New Biological Data</h2>
+<p><small>This uses the stored procedure: proc_record_biological_data</small></p>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="data_type">Type:</label>
+        <select id="data_type" name="data_type" required>
+            <option value="">Select...</option>
+            <option value="organ">Organ</option>
+            <option value="tissue">Tissue</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="condition">Condition:</label>
+        <select id="condition" name="condition" required>
+            <option value="">Select...</option>
+            <option value="control">Control</option>
+            <option value="disease">Disease</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="is_required">Is Life-Required?</label>
+        <select id="is_required" name="is_required" required>
+            <option value="">Select...</option>
+            <option value="Y">Yes</option>
+            <option value="N">No</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="density">Density:</label>
+        <input type="number" id="density" name="density" step="0.01" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="5"></textarea>
+    </div>
+    
+    <div class="form-group">
+        <label for="donor_cf">Donor:</label>
+        <select id="donor_cf" name="donor_cf" required>
+            <option value="">Select a donor...</option>
+            {% for donor in donors %}
+            <option value="{{ donor[0] }}">{{ donor[0] }} - {{ donor[1] }} {{ donor[2] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <button type="submit" class="btn">Add Biological Data</button>
+    <a href="{{ url_for('biological_data') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

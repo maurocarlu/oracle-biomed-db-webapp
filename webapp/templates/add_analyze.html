@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Add BioData-Experiment Link{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Add BioData-Experiment Link</h1>
+    
+    <div style="background-color: #fff3cd; border: 1px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 5px;">
+        <strong>⚠️ Important:</strong> You can only link Biological Data to Experiments if the biological data is affected by the <strong>same disease</strong> that the experiment is testing.
+        <br><br>
+        <strong>How to use:</strong>
+        <ol>
+            <li><strong>First:</strong> Select a Biological Data</li>
+            <li><strong>Then:</strong> The experiment dropdown will show only experiments testing diseases that affect the selected biological data</li>
+        </ol>
+    </div>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="bio_id">1. Select Biological Data:</label>
+            <select id="bio_id" name="bio_id" required>
+                <option value="">-- Select Biological Data --</option>
+                {% for bio in biological_data %}
+                <option value="{{ bio[0] }}" data-diseases="{{ bio[3] or '' }}">
+                    {{ bio[0] }} - {{ bio[1] }} | Diseases: {{ bio[3] or 'None' }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="exp_id">2. Select Experiment (filtered by compatible diseases):</label>
+            <select id="exp_id" name="exp_id" required disabled>
+                <option value="">-- First select a Biological Data --</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit">Add Link</button>
+            <a href="{{ url_for('analyze') }}" class="button">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<script>
+// Store all experiments data
+const allExperiments = [
+    {% for exp in experiments %}
+    {
+        id: {{ exp[0] }},
+        date: "{{ exp[1] }}",
+        disease_id: {{ exp[2] }},
+        disease_name: "{{ exp[3] }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+];
+
+// Filter experiments when biological data is selected
+document.getElementById('bio_id').addEventListener('change', function() {
+    const expSelect = document.getElementById('exp_id');
+    const selectedOption = this.options[this.selectedIndex];
+    const bioDiseasesStr = selectedOption.getAttribute('data-diseases');
+    
+    // Clear current options
+    expSelect.innerHTML = '';
+    
+    if (!this.value) {
+        // No biological data selected
+        expSelect.disabled = true;
+        expSelect.innerHTML = '<option value="">-- First select a Biological Data --</option>';
+        return;
+    }
+    
+    if (!bioDiseasesStr) {
+        // Biological data has no associated diseases
+        expSelect.disabled = true;
+        expSelect.innerHTML = '<option value="">-- Selected biological data has no associated diseases --</option>';
+        return;
+    }
+    
+    // Parse diseases (comma-separated list from LISTAGG)
+    const bioDiseases = bioDiseasesStr.split(',').map(d => d.trim().toLowerCase());
+    
+    // Filter experiments
+    const compatibleExperiments = allExperiments.filter(exp => 
+        bioDiseases.includes(exp.disease_name.toLowerCase())
+    );
+    
+    if (compatibleExperiments.length === 0) {
+        expSelect.disabled = true;
+        expSelect.innerHTML = '<option value="">-- No compatible experiments found --</option>';
+    } else {
+        expSelect.disabled = false;
+        expSelect.innerHTML = '<option value="">-- Select Experiment --</option>';
+        
+        compatibleExperiments.forEach(exp => {
+            const option = document.createElement('option');
+            option.value = exp.id;
+            option.textContent = `${exp.id} - ${exp.date} | Disease: ${exp.disease_name} (ID: ${exp.disease_id})`;
+            expSelect.appendChild(option);
+        });
+    }
+});
+</script>
+
+{% endblock %}
