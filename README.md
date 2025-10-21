@@ -136,11 +136,3 @@ The Flask app exposes standard CRUD-like pages for the main entities. Key routes
 - Operations: `/operations/op2`, `/operations/op3`, `/operations/op4`, `/operations/op5` (these call the database functions)
 
 ---
-
-If you want, I can:
-
-- Add the `README.md` file to the repository now (I created it in the repo root) and run a quick lint or check.
-- Propose a short README summary or CHANGELOG.
-- Create a `LICENSE` file (MIT/Apache) if you want.
-
-Tell me what else you'd like changed or added.
